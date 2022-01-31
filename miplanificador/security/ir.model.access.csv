@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_miplanificador_miplanificador,miplanificador.miplanificador,model_miplanificador_miplanificador,base.group_user,1,1,1,1
