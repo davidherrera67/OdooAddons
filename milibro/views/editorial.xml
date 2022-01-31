@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="milibro.editorial_tree">
+            <field name="name">Editorial</field>
+            <field name="model">milibro.editorial</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--los cojemos del autor.py-->
+                    <field name="name"/>
+                    <field name="direccion"/>
+                    <field name="poblacion"/>
+                    <field name="cantidad_libros"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.editorial_form">
+            <field name="name">Formulario Editorial</field>
+            <field name="model">milibro.editorial</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <!--los cojemos del persona.py-->
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group for="Información de Contacto">
+                            <field name="direccion"/>
+                            <field name="poblacion"/>
+                            <field name="cantidad_libros"/>
+                        </group>
+                        <notebook>
+                            <page string="Libros">
+                                <field name="libro_ids">
+                                    <tree>
+                                        <field name="name"></field>
+                                        <field name="isbn"></field>
+                                        <field name="autor_id"></field>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="milibro.editorial_action_window">
+            <field name="name">Editoriales</field>
+            <field name="res_model">milibro.editorial</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Como ya estaba creado el padre pues solo creo el correspondiente a la vista editorial-->
+
+        <menuitem name="Editoriales" id="milibro.menu_editoriales"
+                  parent="milibro.menu_auxiliares"
+                  action="milibro.editorial_action_window"/> <!-- el name es texti que quiero que apareczca en odoo-->
+
+    </data>
+</odoo>

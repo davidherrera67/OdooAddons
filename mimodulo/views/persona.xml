@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="mimodulo.persona_tree">
+      <field name="name">Listado de Personas</field>
+      <field name="model">mimodulo.persona</field> <!--ponerle el nombre del name en el persona.py-->
+      <field name="arch" type="xml">
+        <tree>
+            <!--los cojemos del persona.py-->
+          <field name="name"/>
+          <field name="apellidos"/>
+          <field name="fecha_nacimiento"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="mimodulo.persona_action_window">
+      <field name="name">Personas</field>
+      <field name="res_model">mimodulo.persona</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="mimodulo.action_server">
+      <field name="name">mimodulo server</field>
+      <field name="model_id" ref="model_mimodulo_mimodulo"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item (Menu Padre)-->
+
+    <menuitem name="Mi Módulo" id="mimodulo.menu_root" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Personas" id="mimodulo.menu_persona" parent="mimodulo.menu_root" action="mimodulo.persona_action_window"/> <!-- el name es texti que quiero que apareczca en odoo-->
+<!--    <menuitem name="Menu 2" id="mimodulo.menu_2" parent="mimodulo.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="mimodulo.menu_1_list" parent="mimodulo.menu_1"
+              action="mimodulo.action_window"/>
+    <menuitem name="Server to list" id="mimodulo" parent="mimodulo.menu_2"
+              action="mimodulo.action_server"/>
+-->
+  </data>
+</odoo>

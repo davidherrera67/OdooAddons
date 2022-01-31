@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<record model="ir.actions.act_window" id="milibro.categoria_action_window">
+            <field name="name">Categorias</field>
+            <field name="res_model">milibro.categoria</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Como ya estaba creado el padre pues solo creo el correspondiente a la vista editorial-->
+
+        <menuitem name="Categorias" id="milibro.menu_categorias"
+                  parent="milibro.menu_auxiliares"
+                  action="milibro.categoria_action_window"/> <!-- el name es texti que quiero que apareczca en odoo-->
+
+    </data>
+</odoo>

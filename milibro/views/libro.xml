@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="milibro.libro_tree">
+            <field name="name">Libros</field>
+            <field name="model">milibro.libro</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--los cojemos del persona.py-->
+                    <field name="name"/>
+                    <field name="isbn"/>
+                    <field name="autor_id"/>
+                    <field name="editorial_id"/>
+                    <field name="num_paginas"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.libro_form">
+            <field name="name">Formulario Libros</field>
+            <field name="model">milibro.libro</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <!--los cojemos del persona.py-->
+                        <group>
+                            <field name="name"/>
+                            <field name="num_paginas"/>
+                            <field name="tejuelo"/>
+                            <field name="cdu_id"/>
+                        </group>
+                        <group string="Otra informacion">
+                            <field name="autor_id"/>
+                            <field name="editorial_id"/>
+                            <field name="isbn"/>
+                        </group>
+                        <notebook>
+                            <page string="Resumen">
+                                <field name="descripcion"/>
+                            </page>
+                            <page string="Categorías">
+                                <field name="categoria_ids">
+                                    <tree>
+                                        <field name="name"></field>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="milibro.libro_action_window">
+            <field name="name">Libros</field>
+            <field name="res_model">milibro.libro</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="mimodulo.action_server">
+              <field name="name">mimodulo server</field>
+              <field name="model_id" ref="model_mimodulo_mimodulo"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <!-- Top menu item (Menu Padre)-->
+
+        <menuitem name="Mi Libro" id="milibro.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Auxiliares" id="milibro.menu_auxiliares"
+                  parent="milibro.menu_root"/> <!-- el name es texti que quiero que apareczca en odoo-->
+
+        <menuitem name="Libros" id="milibro.menu_libros" parent="milibro.menu_auxiliares"
+                  action="milibro.libro_action_window"/>
+        <!-- actions -->
+        <!--
+            <menuitem name="List" id="mimodulo.menu_1_list" parent="mimodulo.menu_1"
+                      action="mimodulo.action_window"/>
+            <menuitem name="Server to list" id="mimodulo" parent="mimodulo.menu_2"
+                      action="mimodulo.action_server"/>
+        -->
+    </data>
+</odoo>

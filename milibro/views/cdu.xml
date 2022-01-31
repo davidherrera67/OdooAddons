@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="milibro.cdu_tree">
+            <field name="name">cdu</field>
+            <field name="model">milibro.cdu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--los cojemos del autor.py-->
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="milibro.cdu_form">
+            <field name="name">Formulario cdu</field>
+            <field name="model">milibro.cdu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <!--los cojemos del persona.py-->
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="milibro.cdu_action_window">
+            <field name="name">cdu</field>
+            <field name="res_model">milibro.cdu</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="mimodulo.action_server">
+              <field name="name">mimodulo server</field>
+              <field name="model_id" ref="model_mimodulo_mimodulo"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <menuitem name="cdus" id="milibro.menu_cdus"
+                  parent="milibro.menu_auxiliares"
+                  action="milibro.cdu_action_window"/> <!-- el name es texti que quiero que apareczca en odoo-->
+        <!-- actions -->
+        <!--
+            <menuitem name="List" id="mimodulo.menu_1_list" parent="mimodulo.menu_1"
+                      action="mimodulo.action_window"/>
+            <menuitem name="Server to list" id="mimodulo" parent="mimodulo.menu_2"
+                      action="mimodulo.action_server"/>
+        -->
+    </data>
+</odoo>
