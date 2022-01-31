@@ -4,4 +4,4 @@ access_milibro_mieditorial,milibro.editorial,model_milibro_editorial,base.group_
 access_milibro_miautor,milibro.autor,model_milibro_autor,base.group_user,1,1,1,1
 access_milibro_micategoria,milibro.categoria,model_milibro_categoria,base.group_user,1,1,1,1
 access_milibro_micdu,milibro.cdu,model_milibro_cdu,base.group_user,1,1,1,1
-
+access_milibro_miejemplar,milibro.ejemplar,model_milibro_ejemplar,base.group_user,1,1,1,1

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from odoo import fields, api, models
 from odoo.exceptions import ValidationError
 
@@ -34,7 +33,9 @@ class Libro(models.Model):
     num_paginas = fields.Integer(
         string="Num. paginas")  # aqui no se le dice nada del compute...se le dice luego en el onchange o en el constraints)
     num_paginas = fields.Integer(string="Num. paginas")
-    tejuelo = fields.Char(string="tejuelo")
+    tejuelo = fields.Char(string="tejuelo",compute="_calcular_tejuelo")
+    #one2many
+    ejemplar_ids = fields.One2many(comodel_name="milibro.ejemplar",inverse_name="libro_id")  #Un Libro puede tener cero o muchos Ejemplares(por eso no se pone required=True)
 
     #     value = fields.Integer()
     #     value2 = fields.Float(compute="_value_pc", store=True)
@@ -62,8 +63,7 @@ class Libro(models.Model):
     @api.depends("name", "autor_id", "cdu_id")
     def _calcular_tejuelo(self):
         for r in self:
-            if r.name and r.autor_id and r.apellidos:
-                r.tejuelo = str(r.cdu_id) + "-" + str(r.name)[0:3].upper() + "-" + str(r.autor_id)[0:3].lower()
+            if r.cdu_id and r.autor_id and r.name:
+                r.tejuelo = str(r.cdu_id.name) + "-" + str(r.name)[0:3].upper() + "-" + str(r.autor_id.apellidos)[0:3].lower()
             else:
                 r.tejuelo = ""
-
